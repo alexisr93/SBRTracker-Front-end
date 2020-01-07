@@ -7,7 +7,6 @@ import {
   NavLink
 } from 'react-router-dom';
 import './App.css';
-import './dashboard.css';
 import DashBoard from './DashBoard.js';
 import Pending from './Pending.js';
 import Resolved from './Resolved.js';
@@ -21,10 +20,10 @@ function App() {
           <NavBar></NavBar>
     			<div className="container-fluid">
     				<div className="row">
-              <nav className="col-md-2 d-none d-md-block bg-light sidebar">
+              <nav className="col-md-2 col-lg-1 d-none d-md-block bg-light sidebar">
                 <SideBar></SideBar>
               </nav>
-    					<main role="main" className="col-md-10 ml-md-auto col-lg-10 px-4">
+    					<main role="main" className="col-md-10 col-lg-11 ml-md-auto px-4">
                 <MainSwitch></MainSwitch>
     					</main>
     				</div>
@@ -39,8 +38,8 @@ class NavBar extends React.Component {
   render() {
     return (
       <div>
-        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0 shadow">
-          <a className="navbar-brand col-sm-3 col-md-2 mr-0">SBRTracker</a>
+        <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
+          <a className="navbar-brand col-md-2 col-lg-1 mr-0">SBRTracker</a>
           <input className="form-control form-control-dark w-100" type="text" placeholder="Search by student name" aria-label="Search"/>
           <ul className="navbar-nav px-3">
             <li className="nav-item text-nowrap">

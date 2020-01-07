@@ -14,7 +14,8 @@ class NewReferral extends React.Component {
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h2 className="h2">New Referral</h2>
         </div>
-
+        <div className="row">
+        <div className="col">
         <form>
           <div className="form-group">
             <label htmlFor="inputStudentName">Student Name</label>
@@ -34,16 +35,16 @@ class NewReferral extends React.Component {
           <div className="form-group">
             <div className="row">
               <div className="col">
-                <label htmlFor="exampleInputPassword1">Grade</label>
-                <select className="form-control" id="exampleFormControlSelect1">
+                <label htmlFor="inputGrade">Grade</label>
+                <select className="form-control" id="formControlGrade">
                   <option>6th</option>
                   <option>7th</option>
                   <option>8th</option>
                 </select>
               </div>
               <div className="col">
-                <label htmlFor="exampleInputPassword1">Class Period</label>
-                <select className="form-control" id="classPeriod">
+                <label htmlFor="inputPeriod">Class Period</label>
+                <select className="form-control" id="formControlClassPeriod">
                   <option selected disabled>Select Period</option>
                   <option>1st</option>
                   <option>2nd</option>
@@ -91,8 +92,8 @@ class NewReferral extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Specific Incident Information</label>
-            <textarea className="form-control" id="specificIncidentInformation" rows="3" placeholder="Enter text"></textarea>
+            <label htmlFor="exampleInputPassword1">Incident Description</label>
+            <textarea className="form-control" id="incidentDescription" rows="3" placeholder="Enter description."></textarea>
           </div>
 
           <div class="row">
@@ -106,11 +107,13 @@ class NewReferral extends React.Component {
                 </div>
               </div>
             </div>
-            
+
             <div class="col">
             </div>
           </div>
         </form>
+        </div>
+        </div>
       </div>
     )
   }
