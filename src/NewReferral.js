@@ -36,21 +36,22 @@ class NewReferral extends React.Component {
               <div className="col">
                 <label htmlFor="exampleInputPassword1">Grade</label>
                 <select className="form-control" id="exampleFormControlSelect1">
-                  <option>6</option>
-                  <option>7</option>
-                  <option>8</option>
+                  <option>6th</option>
+                  <option>7th</option>
+                  <option>8th</option>
                 </select>
               </div>
               <div className="col">
                 <label htmlFor="exampleInputPassword1">Class Period</label>
                 <select className="form-control" id="classPeriod">
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
+                  <option selected disabled>Select Period</option>
+                  <option>1st</option>
+                  <option>2nd</option>
+                  <option>3rd</option>
+                  <option>4th</option>
+                  <option>5th</option>
+                  <option>6th</option>
+                  <option>7th</option>
                 </select>
               </div>
             </div>
@@ -65,6 +66,7 @@ class NewReferral extends React.Component {
               <div className="col">
                 <label htmlFor="exampleInputPassword1">Incident Type</label>
                 <select className="form-control" id="incidenetType">
+                  <option selected disabled>Select Type</option>
                   <option>1</option>
                   <option>2</option>
                   <option>3</option>
@@ -77,6 +79,7 @@ class NewReferral extends React.Component {
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Previous Intervention</label>
             <select className="form-control" id="previousIntervention">
+              <option selected disabled>Select Previous Intervention</option>
               <option>1</option>
               <option>2</option>
               <option>3</option>
@@ -89,7 +92,7 @@ class NewReferral extends React.Component {
 
           <div className="form-group">
             <label htmlFor="exampleInputPassword1">Specific Incident Information</label>
-            <textarea className="form-control" id="specificIncidentInformation" rows="3"></textarea>
+            <textarea className="form-control" id="specificIncidentInformation" rows="3" placeholder="Enter text"></textarea>
           </div>
 
           <div class="row">
@@ -103,6 +106,7 @@ class NewReferral extends React.Component {
                 </div>
               </div>
             </div>
+            
             <div class="col">
             </div>
           </div>
