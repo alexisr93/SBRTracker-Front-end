@@ -15,7 +15,7 @@ class NewReferral extends React.Component {
           <h2 className="h2">New Referral</h2>
         </div>
         <div className="row">
-        <div className="col">
+        <div className="col-md-12 col-lg-6">
         <form>
           <div className="form-group">
             <label htmlFor="inputStudentName">Student Name</label>
@@ -37,6 +37,7 @@ class NewReferral extends React.Component {
               <div className="col">
                 <label htmlFor="inputGrade">Grade</label>
                 <select className="form-control" id="formControlGrade">
+                  <option selected disabled>Select Grade</option>
                   <option>6th</option>
                   <option>7th</option>
                   <option>8th</option>
@@ -96,19 +97,14 @@ class NewReferral extends React.Component {
             <textarea className="form-control" id="incidentDescription" rows="3" placeholder="Enter description."></textarea>
           </div>
 
-          <div class="row">
-            <div class="col">
-              <div class="row">
-                <div class="col">
-                  <button type="reset" className="btn btn-danger">Reset</button>
-                </div>
-                <div class="col">
-                  <button type="submit" className="btn btn-primary">Submit</button>
+          <div className="row">
+            <div className="col">
+              <div className="row">
+                <div className="col">
+                  <button type="reset" className="btn btn-secondary">Reset</button>
+                  <button type="submit" className="btn btn-dark">Submit</button>
                 </div>
               </div>
-            </div>
-
-            <div class="col">
             </div>
           </div>
         </form>
