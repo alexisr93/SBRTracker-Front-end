@@ -8,6 +8,30 @@ import {
 } from 'react-router-dom';
 
 class NewReferral extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      //TODO
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:3000/")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+          //TODO
+          });
+        },
+        (error) => {
+          this.setState({
+            //TODO
+          });
+        }
+      )
+  }
+  
   render() {
     return (
       <div>
