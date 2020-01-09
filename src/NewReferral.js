@@ -117,10 +117,13 @@ class NewReferral extends React.Component {
                     <label>Incident Type</label>
                     <select className="form-control" id="incidenetType">
                       <option selected disabled>Select Type</option>
-                      <option>1</option>
-                      <option>2</option>
-                      <option>3</option>
-                      <option>4</option>
+                      <option>Dress Code Violation</option>
+                      <option>Physical Agression</option>
+                      <option>Defiance</option>
+                      <option>Harrassment</option>
+                      <option>Bullying</option>
+                      <option>Technology Violation</option>
+                      <option>Other Misconduct</option>
                     </select>
                   </div>
                 </div>
@@ -130,13 +133,9 @@ class NewReferral extends React.Component {
                 <label>Previous Intervention</label>
                 <select className="form-control" name="previous_intervention" onChange={this.handleChange} id="previousIntervention">
                   <option selected disabled>Select Previous Intervention</option>
-                  <option>1</option>
-                  <option>2</option>
-                  <option>3</option>
-                  <option>4</option>
-                  <option>5</option>
-                  <option>6</option>
-                  <option>7</option>
+                  <option>Student Warning</option>
+                  <option>Parent Contact</option>
+                  <option>Previous Referral</option>
                 </select>
               </div>
 
