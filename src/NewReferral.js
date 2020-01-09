@@ -11,18 +11,36 @@ class NewReferral extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      //TODO
+      first_name: null,
+      middle_name: null,
+      last_name: null,
+      grade: null,
+      class_period: null,
+      date_of_incident: null,
+      incident_type: null,
+      previous_intervention: null,
+      incident_description: null,
+      status: null,
+      resolution: null,
     };
+    this.handleChange = this.handleChange.bind(this);
+    this.handleSubmit = this.handleSubmit.bind(this);
   }
-
-  componentDidMount() {
-    fetch("http://localhost:3000/")
+  handleChange(event) {
+    this.setState({
+      [event.target.name]: event.target.value
+    });
+    console.log("A value changed")
+  }
+  handleSubmit(event) {
+    fetch('http://localhost:3000/', {
+      method:'post',
+      body: JSON.stringify()
+    })
       .then(res => res.json())
       .then(
         (result) => {
-          this.setState({
-          //TODO
-          });
+          console.log('POST data: ' + result);
         },
         (error) => {
           this.setState({
@@ -30,8 +48,9 @@ class NewReferral extends React.Component {
           });
         }
       )
+    event.preventDefault(); // Check if i need this here
   }
-  
+
   render() {
     return (
       <div>
@@ -42,16 +61,16 @@ class NewReferral extends React.Component {
         <div className="col-md-12 col-lg-6">
         <form>
           <div className="form-group">
-            <label htmlFor="inputStudentName">Student Name</label>
+            <label>Student Name</label>
             <div className="row">
               <div className="col">
-              <input type="student-name" className="form-control" id="firstName" placeholder="First Name"/>
+              <input type="text" className="form-control" name="first_name" onChange={this.handleChange} placeholder="First Name"/>
               </div>
               <div className="col">
-              <input type="student-name" className="form-control" id="middleName" placeholder="Middle Name"/>
+              <input type="text" className="form-control" name="middle_name" onChange={this.handleChange} placeholder="Middle Name"/>
               </div>
               <div className="col">
-              <input type="student-name" className="form-control" id="lastName" placeholder="Last Name"/>
+              <input type="text" className="form-control" name="last_name" onChange={this.handleChange} placeholder="Last Name"/>
               </div>
             </div>
           </div>
@@ -59,8 +78,8 @@ class NewReferral extends React.Component {
           <div className="form-group">
             <div className="row">
               <div className="col">
-                <label htmlFor="inputGrade">Grade</label>
-                <select className="form-control" id="formControlGrade">
+                <label>Grade</label>
+                <select className="form-control" name="grade" onChange={this.handleChange}>
                   <option selected disabled>Select Grade</option>
                   <option>6th</option>
                   <option>7th</option>
@@ -68,8 +87,8 @@ class NewReferral extends React.Component {
                 </select>
               </div>
               <div className="col">
-                <label htmlFor="inputPeriod">Class Period</label>
-                <select className="form-control" id="formControlClassPeriod">
+                <label>Class Period</label>
+                <select className="form-control" name="class_period" onChange={this.handleChange}>
                   <option selected disabled>Select Period</option>
                   <option>1st</option>
                   <option>2nd</option>
@@ -86,11 +105,11 @@ class NewReferral extends React.Component {
           <div className="form-group">
             <div className="row">
               <div className="col">
-                <label htmlFor="exampleInputPassword1">Date of Incident</label>
-                <input type="password" className="form-control" id="dateOfIncident" placeholder="MM/DD/YY"/>
+                <label>Date of Incident</label>
+                <input type="text" className="form-control" name="date_of_incident" onChange={this.handleChange} placeholder="MM/DD/YY"/>
               </div>
               <div className="col">
-                <label htmlFor="exampleInputPassword1">Incident Type</label>
+                <label>Incident Type</label>
                 <select className="form-control" id="incidenetType">
                   <option selected disabled>Select Type</option>
                   <option>1</option>
@@ -103,8 +122,8 @@ class NewReferral extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Previous Intervention</label>
-            <select className="form-control" id="previousIntervention">
+            <label>Previous Intervention</label>
+            <select className="form-control" name="previous_intervention" onChange={this.handleChange} id="previousIntervention">
               <option selected disabled>Select Previous Intervention</option>
               <option>1</option>
               <option>2</option>
@@ -117,8 +136,8 @@ class NewReferral extends React.Component {
           </div>
 
           <div className="form-group">
-            <label htmlFor="exampleInputPassword1">Incident Description</label>
-            <textarea className="form-control" id="incidentDescription" rows="3" placeholder="Enter description."></textarea>
+            <label>Incident Description</label>
+            <textarea className="form-control" name="incident_description" onChange={this.handleChange} rows="3" placeholder="Enter description."></textarea>
           </div>
 
           <div className="row">
@@ -126,7 +145,7 @@ class NewReferral extends React.Component {
               <div className="row">
                 <div className="col">
                   <button type="reset" className="btn btn-secondary">Reset</button>
-                  <button type="submit" className="btn btn-dark">Submit</button>
+                  <button type="submit" className="btn btn-dark" onClick={this.handleSubmit}>Submit</button>
                 </div>
               </div>
             </div>
