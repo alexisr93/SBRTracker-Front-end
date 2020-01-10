@@ -26,12 +26,14 @@ class NewReferral extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
+  
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
     });
     console.log("A value changed")
   }
+
   handleSubmit(event) {
     fetch('http://localhost:5000/incident', {
       method:'post',

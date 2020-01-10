@@ -8,50 +8,78 @@ import {
 } from 'react-router-dom';
 
 class Resolved extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+        isLoaded: false,
+        items: []
+    };
+  }
+
+  componentDidMount() {
+    fetch("http://localhost:5000/incidents")
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+            items: result
+          });
+        },
+        (error) => {
+          this.setState({
+            isLoaded: true
+            //TODO
+          });
+        }
+      )
+  }
+  
   render() {
+    const items = [];
+    this.state.items.forEach(item => {
+      if(item.status == "Resolved"){
+        items.push(
+          <tr key={item.id}>
+            <td>{item.id}</td>
+            <td>{item.first_name}</td>
+            <td>{item.middle_name}</td>
+            <td>{item.last_name}</td>
+            <td>{item.grade}</td>
+            <td>{item.class_period}</td>
+            <td>{item.date_of_incident}</td>
+            <td>{item.incident_type}</td>
+            <td>{item.previous_intervention}</td>
+            <td>{item.incident_description}</td>
+          </tr>
+        )
+      }
+    })
     return (
       <div>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h2 className="h2">Resolved</h2>
-          <div className="btn-toolbar mb-2 mb-md-0">
-            <div className="btn-group mr-2">
-              <button type="button" className="btn btn-sm btn-outline-secondary">Share</button>
-              <button type="button" className="btn btn-sm btn-outline-secondary">Export</button>
-            </div>
-            <button type="button" className="btn btn-sm btn-outline-secondary dropdown-toggle">
-              Today
-            </button>
-          </div>
         </div>
-
         <div className="table-responsive">
-					<table className="table table-striped table-sm">
-						<thead>
-							<tr>
-								<th>#</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
-								<th>Header</th>
-							</tr>
-						</thead>
-						<tbody>
-							<tr>
-								<td>1,001</td>
-								<td>Lorem</td>
-								<td>ipsum</td>
-								<td>dolor</td>
-								<td>sit</td>
-							</tr>
-							<tr>
-								<td>1,002</td>
-								<td>amet</td>
-								<td>consectetur</td>
-								<td>adipiscing</td>
-								<td>elit</td>
-							</tr>
-						</tbody>
-					</table>
+          <table className="table table-striped table-sm">
+            <thead>
+              <tr>
+                <th>ID#</th>
+                <th>First Name</th>
+                <th>Middle Name</th>
+                <th>Last Name</th>
+                <th>Grade</th>
+                <th>Class Period</th>
+                <th>Date of Incident</th>
+                <th>Type</th>
+                <th>Previous Intervention</th>
+                <th>Description</th>
+              </tr>
+            </thead>
+            <tbody>
+              {items}
+            </tbody>
+          </table>
         </div>
       </div>
     );

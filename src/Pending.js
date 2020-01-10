@@ -32,8 +32,8 @@ class Pending extends React.Component {
           });
         }
       )
-
   }
+  
   render() {
     const items = [];
     this.state.items.forEach(item => {
