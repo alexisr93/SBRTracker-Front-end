@@ -23,6 +23,7 @@ class NewReferral extends React.Component {
       status: null,
       resolution: null,
     };
+
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
@@ -46,6 +47,7 @@ class NewReferral extends React.Component {
       .then(
         (result) => {
           console.log('POST data: ' + result);
+          window.location.reload(false);
         },
         (error) => {
           this.setState({
@@ -86,7 +88,7 @@ class NewReferral extends React.Component {
                   <div className="col">
                     <label>Grade</label>
                     <select className="form-control" name="grade" onChange={this.handleChange}>
-                      <option selected disabled>Select Grade</option>
+                      <option selected>Select Grade</option>
                       <option>6th</option>
                       <option>7th</option>
                       <option>8th</option>
@@ -96,7 +98,7 @@ class NewReferral extends React.Component {
                   <div className="col">
                     <label>Class Period</label>
                     <select className="form-control" name="class_period" onChange={this.handleChange}>
-                      <option selected disabled>Select Period</option>
+                      <option selected>Select Period</option>
                       <option>1st</option>
                       <option>2nd</option>
                       <option>3rd</option>
@@ -118,7 +120,7 @@ class NewReferral extends React.Component {
                   <div className="col">
                     <label>Incident Type</label>
                     <select className="form-control" id="incidenetType">
-                      <option selected disabled>Select Type</option>
+                      <option selected>Select Type</option>
                       <option>Dress Code Violation</option>
                       <option>Physical Agression</option>
                       <option>Defiance</option>
@@ -134,7 +136,7 @@ class NewReferral extends React.Component {
               <div className="form-group">
                 <label>Previous Intervention</label>
                 <select className="form-control" name="previous_intervention" onChange={this.handleChange} id="previousIntervention">
-                  <option selected disabled>Select Previous Intervention</option>
+                  <option selected>Select Previous Intervention</option>
                   <option>Student Warning</option>
                   <option>Parent Contact</option>
                   <option>Previous Referral</option>
