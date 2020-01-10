@@ -14,6 +14,7 @@ class Pending extends React.Component {
         isLoaded: false,
         items: []
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -33,24 +34,42 @@ class Pending extends React.Component {
         }
       )
   }
-  
+  handleClick(event){
+    fetch("http://localhost:5000/incidents/" + event.target.name, {
+      method: "delete",
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+          });
+        }
+      )
+  }
   render() {
     const items = [];
+    if(this.state.items)
     this.state.items.forEach(item => {
-      items.push(
-        <tr key={item.id}>
-          <td>{item.id}</td>
-          <td>{item.first_name}</td>
-          <td>{item.middle_name}</td>
-          <td>{item.last_name}</td>
-          <td>{item.grade}</td>
-          <td>{item.class_period}</td>
-          <td>{item.date_of_incident}</td>
-          <td>{item.incident_type}</td>
-          <td>{item.previous_intervention}</td>
-          <td>{item.incident_description}</td>
-        </tr>
-      )
+      if(item.status == "Pending"){
+        items.push(
+          <tr key={item.id}>
+            <td>{item.first_name}</td>
+            <td>{item.middle_name}</td>
+            <td>{item.last_name}</td>
+            <td>{item.grade}</td>
+            <td>{item.class_period}</td>
+            <td>{item.date_of_incident}</td>
+            <td>{item.incident_type}</td>
+            <td>{item.previous_intervention}</td>
+            <td>{item.incident_description}</td>
+            <td>
+              <button type="submit" className="btn btn-dark" name={item.id} onClick={this.handleClick}>Delete</button>
+              <button className="btn btn-secondary">Update</button></td>
+          </tr>
+        )
+      }
+
     })
     return (
       <div>
@@ -61,7 +80,6 @@ class Pending extends React.Component {
           <table className="table table-striped table-sm">
             <thead>
               <tr>
-                <th>ID#</th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>
@@ -71,6 +89,7 @@ class Pending extends React.Component {
                 <th>Type</th>
                 <th>Previous Intervention</th>
                 <th>Description</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>

@@ -34,14 +34,13 @@ class Resolved extends React.Component {
         }
       )
   }
-  
+
   render() {
     const items = [];
     this.state.items.forEach(item => {
       if(item.status == "Resolved"){
         items.push(
           <tr key={item.id}>
-            <td>{item.id}</td>
             <td>{item.first_name}</td>
             <td>{item.middle_name}</td>
             <td>{item.last_name}</td>
@@ -64,7 +63,6 @@ class Resolved extends React.Component {
           <table className="table table-striped table-sm">
             <thead>
               <tr>
-                <th>ID#</th>
                 <th>First Name</th>
                 <th>Middle Name</th>
                 <th>Last Name</th>

@@ -26,7 +26,7 @@ class NewReferral extends React.Component {
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
   }
-  
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -35,7 +35,7 @@ class NewReferral extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('http://localhost:5000/incident', {
+    fetch('http://localhost:5000/incidents', {
       method:'post',
       body: JSON.stringify(this.state),
       headers: {
