@@ -11,6 +11,7 @@ import DashBoard from './DashBoard.js';
 import Pending from './Pending.js';
 import Resolved from './Resolved.js';
 import NewReferral from './NewReferral.js';
+import Update from './Update.js'
 
 function App() {
   return (
@@ -92,6 +93,7 @@ class MainSwitch extends React.Component {
           <Route path="/newreferral">
             <NewReferral></NewReferral>
           </Route>
+          <Route path="/update" component={Update} />
         </Switch>
       </div>
     );

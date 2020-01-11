@@ -7,10 +7,11 @@ import {
   NavLink
 } from 'react-router-dom';
 
-class NewReferral extends React.Component {
+class Update extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
+      id: props.location.param1,
       first_name: null,
       middle_name: null,
       last_name: null,
@@ -28,6 +29,35 @@ class NewReferral extends React.Component {
     this.handleSubmit = this.handleSubmit.bind(this);
   }
 
+  componentDidMount() {
+    console.log("I mounted");
+    fetch("http://localhost:5000/incidents/" + this.state.id)
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            first_name: result.first_name,
+            middle_name: result.middle_name,
+            last_name: result.last_name,
+            grade: result.grade,
+            class_period: result.class_period,
+            date_of_incident: result.date_of_incident,
+            incident_type: result.incident_type,
+            previous_intervention: result.previous_intervention,
+            incident_description: result.incident_description,
+            status: result.status,
+            resolution: result.resolution,
+          });
+        },
+        (error) => {
+          this.setState({
+            //TODO
+          });
+        },
+      console.log("I returned stuff:")
+      )
+  }
+
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -37,7 +67,7 @@ class NewReferral extends React.Component {
 
   handleSubmit(event) {
     fetch('http://localhost:5000/incidents', {
-      method:'post',
+      method:'update',
       body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
@@ -62,7 +92,7 @@ class NewReferral extends React.Component {
     return (
       <div>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-          <h2 className="h2">New Referral</h2>
+          <h2 className="h2">Update</h2>
         </div>
 
         <div className="row">
@@ -72,13 +102,7 @@ class NewReferral extends React.Component {
                 <label>Student Name</label>
                 <div className="row">
                   <div className="col">
-                  <input type="text" className="form-control" name="first_name" onChange={this.handleChange} placeholder="First Name"/>
-                  </div>
-                  <div className="col">
-                  <input type="text" className="form-control" name="middle_name" onChange={this.handleChange} placeholder="Middle Name"/>
-                  </div>
-                  <div className="col">
-                  <input type="text" className="form-control" name="last_name" onChange={this.handleChange} placeholder="Last Name"/>
+                  <h4>{this.state.first_name} {this.state.middle_name} {this.state.last_name}</h4>
                   </div>
                 </div>
               </div>
@@ -87,26 +111,12 @@ class NewReferral extends React.Component {
                 <div className="row">
                   <div className="col">
                     <label>Grade</label>
-                    <select className="form-control" name="grade" onChange={this.handleChange}>
-                      <option selected>Select Grade</option>
-                      <option>6th</option>
-                      <option>7th</option>
-                      <option>8th</option>
-                    </select>
+                    <h4>{this.state.grade}</h4>
                   </div>
 
                   <div className="col">
                     <label>Class Period</label>
-                    <select className="form-control" name="class_period" onChange={this.handleChange}>
-                      <option selected>Select Period</option>
-                      <option>1st</option>
-                      <option>2nd</option>
-                      <option>3rd</option>
-                      <option>4th</option>
-                      <option>5th</option>
-                      <option>6th</option>
-                      <option>7th</option>
-                    </select>
+                    <h4>{this.state.class_period}</h4>
                   </div>
                 </div>
               </div>
@@ -115,38 +125,32 @@ class NewReferral extends React.Component {
                 <div className="row">
                   <div className="col">
                     <label>Date of Incident</label>
-                    <input type="text" className="form-control" name="date_of_incident" onChange={this.handleChange} placeholder="MM/DD/YY"/>
+                    <h4>{this.state.date_of_incident}</h4>
                   </div>
-                  
                   <div className="col">
                     <label>Incident Type</label>
-                    <select className="form-control" name="incident_type" onChange={this.handleChange}>
-                      <option selected>Select Type</option>
-                      <option>Dress Code Violation</option>
-                      <option>Physical Agression</option>
-                      <option>Defiance</option>
-                      <option>Harrassment</option>
-                      <option>Bullying</option>
-                      <option>Technology Violation</option>
-                      <option>Other Misconduct</option>
-                    </select>
+                    <h4>{this.state.incident_type}</h4>
                   </div>
                 </div>
               </div>
 
               <div className="form-group">
                 <label>Previous Intervention</label>
-                <select className="form-control" name="previous_intervention" onChange={this.handleChange} id="previousIntervention">
-                  <option selected>Select Previous Intervention</option>
-                  <option>Student Warning</option>
-                  <option>Parent Contact</option>
-                  <option>Previous Referral</option>
-                </select>
+                <h4>{this.state.previous_intervention}</h4>
               </div>
 
               <div className="form-group">
                 <label>Incident Description</label>
-                <textarea className="form-control" name="incident_description" onChange={this.handleChange} rows="3" placeholder="Enter description."></textarea>
+                <h4>{this.state.incident_description}</h4>
+              </div>
+
+              <div className="form-group">
+                <label>Resolution</label>
+                <div className="row">
+                  <div className="col">
+                    <textarea className="form-control" type="text" name="resolution" onChange={this.handleChange} rows="5" placeholder="Enter description."></textarea>
+                  </div>
+                </div>
               </div>
 
               <div className="row">
@@ -166,4 +170,4 @@ class NewReferral extends React.Component {
     )
   }
 }
-export default NewReferral;
+export default Update;

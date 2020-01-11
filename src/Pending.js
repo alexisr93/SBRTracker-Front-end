@@ -44,9 +44,11 @@ class Pending extends React.Component {
           this.setState({
             isLoaded: true,
           });
+        window.location.reload(false);
         }
       )
   }
+
   render() {
     const items = [];
     if(this.state.items)
@@ -65,7 +67,12 @@ class Pending extends React.Component {
             <td>{item.incident_description}</td>
             <td>
               <button type="submit" className="btn btn-dark" name={item.id} onClick={this.handleClick}>Delete</button>
-              <button className="btn btn-secondary">Update</button></td>
+              <Link to={{
+                pathname: "/update",
+                param1: item.id
+              }}>
+              <button type="button" className="btn btn-secondary">Update</button></Link>
+            </td>
           </tr>
         )
       }
@@ -101,5 +108,4 @@ class Pending extends React.Component {
     );
   }
 }
-
 export default Pending;
