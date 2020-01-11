@@ -33,7 +33,6 @@ class DashBoard extends React.Component {
               count_pending++;
             }
           });
-          console.log(count_pending)
           this.setState({
             num_pending: count_pending
           });

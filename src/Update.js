@@ -30,7 +30,6 @@ class Update extends React.Component {
   }
 
   componentDidMount() {
-    console.log("I mounted");
     fetch("http://localhost:5000/incidents/" + this.state.id)
       .then(res => res.json())
       .then(
@@ -54,20 +53,19 @@ class Update extends React.Component {
             //TODO
           });
         },
-      console.log("I returned stuff:")
       )
   }
 
   handleChange(event) {
     this.setState({
-      [event.target.name]: event.target.value
+      [event.target.name]: event.target.value,
+      status: "Resolved"
     });
-    console.log("A value changed")
   }
 
   handleSubmit(event) {
-    fetch('http://localhost:5000/incidents', {
-      method:'update',
+    fetch('http://localhost:5000/incidents/' + this.state.id, {
+      method:'put',
       body: JSON.stringify(this.state),
       headers: {
         'Content-Type': 'application/json'
@@ -76,12 +74,11 @@ class Update extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          console.log('POST data: ' + result);
-          window.location.reload(false);
+          console.log('PUT data: ' + result);
         },
         (error) => {
           this.setState({
-            //TODO
+            status: "Pending"
           });
         }
       )
