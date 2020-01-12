@@ -59,16 +59,28 @@ class SideBar extends React.Component {
       <div className="sidebar-sticky">
         <ul className="nav flex-column">
           <li className="nav-link">
-              <NavLink to="/dashboard">Dashboard</NavLink>
+              <NavLink to="/dashboard">
+                <i data-feather="home"></i>
+                Dashboard
+              </NavLink>
           </li>
           <li className="nav-link">
-              <NavLink to="/pending">Pending</NavLink>
+              <NavLink to="/pending">
+                <i data-feather="alert-circle"></i>
+                Pending
+              </NavLink>
           </li>
           <li className="nav-link">
-            <NavLink to="/resolved">Resolved</NavLink>
+            <NavLink to="/resolved">
+              <i data-feather="check-circle"></i>
+              Resolved
+            </NavLink>
           </li>
           <li className="nav-link">
-            <NavLink to="/newreferral">New Referral</NavLink>
+            <NavLink to="/newreferral">
+                <i data-feather="plus-square"></i>
+              New Referral
+            </NavLink>
           </li>
         </ul>
       </div>
