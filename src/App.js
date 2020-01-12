@@ -12,10 +12,12 @@ import Pending from './Pending.js';
 import Resolved from './Resolved.js';
 import NewReferral from './NewReferral.js';
 import Update from './Update.js'
+import SignIn from './SignIn.jsx'
 
 function App() {
   return (
     <div>
+      <SignIn/>
       <Router>
         <div className="App">
           <NavBar></NavBar>
