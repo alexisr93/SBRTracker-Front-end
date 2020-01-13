@@ -11,12 +11,47 @@ class DashBoard extends React.Component {
   constructor(props){
     super(props);
     this.state = {
-      num_pending: null,
-      num_resolved_today: null,
+      num_pending: 0,
+      num_resolved_today: 0,
       num_resolved_week: null,
       items: []
     }
   }
+
+  countNumPending() {
+    let count_pending = 0;
+
+    this.state.items.forEach(item => {
+      if(item.status === "Pending") {
+        count_pending++;
+      }
+    });
+
+    this.setState({
+      num_pending: count_pending
+    });
+  }
+  countNumResolvedToday() {
+    let count_resolved = 0;
+
+    var today = new Date();
+    var dd = String(today.getDate()).padStart(2, '0');
+    var mm = String(today.getMonth() + 1).padStart(2, '0'); //January is 0
+    var yy = today.getFullYear().toString().substring(2, 4)
+
+    today = mm + '/' + dd + '/' + yy;
+
+    this.state.items.forEach(item => {
+      if(item.date_resolved === today){
+        count_resolved++;
+      }
+    });
+
+    this.setState({
+      num_resolved_today: count_resolved
+    });
+  }
+
   componentDidMount() {
     fetch("http://localhost:5000/incidents")
       .then(res => res.json())
@@ -27,15 +62,9 @@ class DashBoard extends React.Component {
             items: result
           });
 
-          let count_pending = 0;
-          this.state.items.forEach(item => {
-            if(item.status === "Pending") {
-              count_pending++;
-            }
-          });
-          this.setState({
-            num_pending: count_pending
-          });
+          this.countNumPending();
+          this.countNumResolvedToday();
+
         },
         (error) => {
           this.setState({
@@ -44,8 +73,6 @@ class DashBoard extends React.Component {
           });
         }
       )
-
-
   }
 
   render() {
@@ -69,7 +96,7 @@ class DashBoard extends React.Component {
           <div className="col">
             <div className="card">
               <div className="card-body">
-                <h3 className="card-title">Resolved Today:</h3>
+                <h3 className="card-title">Resolved Today: {this.state.num_resolved_today}</h3>
               </div>
             </div>
           </div>
@@ -78,7 +105,7 @@ class DashBoard extends React.Component {
           <div className="col">
             <div className="card">
               <div className="card-body">
-                <h3 className="card-title">Resolved This Week:</h3>
+                <h3 className="card-title">Resolved This Week: {this.state.num_resolved_week}</h3>
               </div>
             </div>
           </div>

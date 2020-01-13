@@ -17,7 +17,6 @@ import SignIn from './SignIn.jsx'
 function App() {
   return (
     <div>
-      <SignIn/>
       <Router>
         <div className="App">
           <NavBar></NavBar>
