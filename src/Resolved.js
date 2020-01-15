@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink
-} from 'react-router-dom';
 
 class Resolved extends React.Component {
   constructor(props) {

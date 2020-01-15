@@ -13,6 +13,7 @@ import Resolved from './Resolved.js';
 import NewReferral from './NewReferral.js';
 import Update from './Update.js'
 import SignIn from './SignIn.jsx'
+import SearchForStudent from './SearchForStudent.jsx'
 
 function App() {
   return (
@@ -42,7 +43,7 @@ class NavBar extends React.Component {
       <div>
         <nav className="navbar navbar-dark fixed-top bg-dark flex-md-nowrap p-0">
           <a className="navbar-brand col-md-2 col-lg-1 mr-0">SBRTracker</a>
-          <input className="form-control form-control-dark w-100" type="text" placeholder="Search by student name" aria-label="Search"/>
+          <SearchForStudent></SearchForStudent>
           <ul className="navbar-nav px-3">
             <li className="nav-item text-nowrap">
               <a className="nav-link" href="#">Sign out</a>

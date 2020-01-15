@@ -1,11 +1,4 @@
 import React from 'react';
-import {
-  BrowserRouter as Router,
-  Switch,
-  Route,
-  Link,
-  NavLink
-} from 'react-router-dom';
 
 class NewReferral extends React.Component {
   constructor(props) {
@@ -117,7 +110,7 @@ class NewReferral extends React.Component {
                     <label>Date of Incident</label>
                     <input type="text" className="form-control" name="date_of_incident" onChange={this.handleChange} placeholder="MM/DD/YY"/>
                   </div>
-                  
+
                   <div className="col">
                     <label>Incident Type</label>
                     <select className="form-control" name="incident_type" onChange={this.handleChange}>
