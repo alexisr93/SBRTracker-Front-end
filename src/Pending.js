@@ -49,7 +49,7 @@ class Pending extends React.Component {
     const items = [];
     if(this.state.items)
     this.state.items.forEach(item => {
-      if(item.status == "Pending"){
+      if(item.status === "Pending"){
         items.push(
           <tr key={item.id}>
             <td>{item.first_name}</td>

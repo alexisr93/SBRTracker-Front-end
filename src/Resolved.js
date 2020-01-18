@@ -31,7 +31,7 @@ class Resolved extends React.Component {
   render() {
     const items = [];
     this.state.items.forEach(item => {
-      if(item.status == "Resolved"){
+      if(item.status === "Resolved"){
         items.push(
           <tr key={item.id}>
             <td>{item.first_name}</td>
