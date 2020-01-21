@@ -1,47 +1,15 @@
 import React from 'react'
-
-class ListOfStudents extends React.Component {
-  constructor(props){
-    super(props);
-    this.state = {
-      search: "",
-      search_results: []
-    };
-  }
-
-  componentDidMount() {
-    fetch('http://localhost:5000/incidents')
-      .then(res => res.json())
-      .then(
-        (result) => {
-          this.setState({
-            api_response: result
-          });
-        },
-        (error) => {
-          this.setState({
-            //TODO
-          });
-        }
-      )
-  }
-
-  render() {
-    return (
-      <div>
-        {this.state.search}
-      </div>
-    );
-  }
-}
+import { Redirect } from 'react-router-dom';
 
 class SearchForStudent extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
       search_value: "",
+      redirect_flag: false
     }
     this.handleChange = this.handleChange.bind(this);
+    this.handleKeyPress = this.handleKeyPress.bind(this);
   }
 
   handleChange(event) {
@@ -50,13 +18,37 @@ class SearchForStudent extends React.Component {
     });
   }
 
+  handleKeyPress(event) {
+    if (event.key === 'Enter') {
+      this.setState({
+        redirect_flag: true
+      });
+    }
+  }
+
   render() {
-    return (
-      <div className="w-100">
-        <input className="form-control form-control-dark w-100" type="text" onChange={this.handleChange} placeholder="Search by student name" aria-label="Search"/>
-          <ListOfStudents query={this.state.search_value}></ListOfStudents>
-      </div>
-    );
+    if (!this.state.redirect_flag) {
+      return (
+        <div className="w-100">
+          <input className="form-control form-control-dark w-100" type="text" onChange={this.handleChange} onKeyPress={this.handleKeyPress} placeholder="Search by student name" aria-label="Search"/>
+        </div>
+      );
+    }
+    else if (this.state.redirect_flag) {
+      this.state.redirct_flag = false;
+
+      return (
+        <div className="w-100">
+          <input className="form-control form-control-dark w-100" type="text" onChange={this.handleChange} onKeyPress={this.handleKeyPress} placeholder="Search by student name" aria-label="Search"/>
+          <Redirect
+            to={{
+              pathname: "/searchresult",
+              state: { query: this.state.search_value }
+            }}
+           />
+        </div>
+      );
+    }
   }
 }
 
