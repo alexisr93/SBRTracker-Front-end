@@ -6,13 +6,14 @@ import {
   NavLink
 } from 'react-router-dom';
 import './App.css';
-import DashBoard from './DashBoard.js';
-import Pending from './Pending.js';
-import Resolved from './Resolved.js';
-import NewReferral from './NewReferral.js';
-import Update from './Update.js'
+import DashBoard from './DashBoard';
+import Pending from './Pending';
+import Resolved from './Resolved';
+import NewReferral from './NewReferral';
+import Update from './Update'
+import SearchResult from './SearchResult';
 //import SignIn from './SignIn.jsx'
-import SearchForStudent from './SearchForStudent.jsx'
+import SearchForStudent from './SearchForStudent'
 
 function App() {
   return (
@@ -94,19 +95,12 @@ class MainSwitch extends React.Component {
     return (
       <div>
         <Switch>
-          <Route path="/dashboard">
-            <DashBoard></DashBoard>
-          </Route>
-          <Route path="/pending">
-            <Pending></Pending>
-          </Route>
-          <Route path="/resolved">
-            <Resolved></Resolved>
-          </Route>
-          <Route path="/newreferral">
-            <NewReferral></NewReferral>
-          </Route>
+          <Route path="/dashboard" component={DashBoard} />
+          <Route path="/pending" component={Pending} />
+          <Route path="/resolved" component={Resolved} />
+          <Route path="/newreferral" component={NewReferral} />
           <Route path="/update" component={Update} />
+          <Route path="/searchresult" component={SearchResult} />
         </Switch>
       </div>
     );
