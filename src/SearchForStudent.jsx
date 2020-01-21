@@ -34,8 +34,12 @@ class SearchForStudent extends React.Component {
         </div>
       );
     }
+
+    //This has to be removed, render() has to be a pure function.
     else if (this.state.redirect_flag) {
-      this.state.redirct_flag = false;
+      this.setState({
+        redirect_flag: false
+      });
 
       return (
         <div className="w-100">
