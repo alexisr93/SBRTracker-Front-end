@@ -29,7 +29,14 @@ class SearchForStudent extends React.Component {
   render() {
     return (
       <div className="w-100">
-        <input className="form-control form-control-dark w-100" type="text" onChange={this.handleChange} onKeyPress={this.handleKeyPress} placeholder="Search by student name" aria-label="Search"/>
+        <input
+          className="form-control form-control-dark w-100"
+          type="text"
+          onChange={this.handleChange}
+          onKeyPress={this.handleKeyPress}
+          placeholder="Search by student name"
+          aria-label="Search"
+        />
       </div>
     );
   }

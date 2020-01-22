@@ -138,7 +138,14 @@ class Update extends React.Component {
                 <label>Resolution</label>
                 <div className="row">
                   <div className="col">
-                    <textarea className="form-control" type="text" name="resolution" onChange={this.handleChange} rows="5" placeholder="Enter description."></textarea>
+                    <textarea
+                      className="form-control"
+                      type="text"
+                      name="resolution"
+                      onChange={this.handleChange}
+                      rows="5"
+                      placeholder="Enter description.">
+                    </textarea>
                   </div>
                 </div>
               </div>
@@ -147,8 +154,17 @@ class Update extends React.Component {
                 <div className="col">
                   <div className="row">
                     <div className="col">
-                      <button type="reset" className="btn btn-secondary">Reset</button>
-                      <button type="submit" className="btn btn-dark" onClick={this.handleSubmit}>Submit</button>
+                      <button
+                        type="reset"
+                        className="btn btn-secondary">
+                        Reset
+                      </button>
+                      <button
+                        type="submit"
+                        className="btn btn-dark"
+                        onClick={this.handleSubmit}>
+                        Submit
+                      </button>
                     </div>
                   </div>
                 </div>
