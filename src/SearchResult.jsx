@@ -72,31 +72,42 @@ class SearchResult extends React.Component {
       });
     }
 
+    let data = '';
+    if (items.length > 0) {
+      data = (
+        <table className="table table-striped table-sm">
+          <thead>
+            <tr>
+              <th>First Name</th>
+              <th>Middle Name</th>
+              <th>Last Name</th>
+              <th>Grade</th>
+              <th>Class Period</th>
+              <th>Date of Incident</th>
+              <th>Type</th>
+              <th>Previous Intervention</th>
+              <th>Description</th>
+              <th></th>
+            </tr>
+          </thead>
+          <tbody>
+            {items}
+          </tbody>
+        </table>
+      )
+    }
+    else {
+      data = (
+        <h3>There are no results.</h3>
+      )
+    }
     return(
       <div>
         <div className="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
           <h2 className="h2">Results</h2>
         </div>
         <div className="table-responsive">
-          <table className="table table-striped table-sm">
-            <thead>
-              <tr>
-                <th>First Name</th>
-                <th>Middle Name</th>
-                <th>Last Name</th>
-                <th>Grade</th>
-                <th>Class Period</th>
-                <th>Date of Incident</th>
-                <th>Type</th>
-                <th>Previous Intervention</th>
-                <th>Description</th>
-                <th></th>
-              </tr>
-            </thead>
-            <tbody>
-              {items}
-            </tbody>
-          </table>
+          {data}
         </div>
       </div>
     );
