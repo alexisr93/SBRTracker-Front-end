@@ -94,15 +94,6 @@ class DashBoard extends React.Component {
             </div>
           </div>
         </div>
-        <div className="row">
-          <div className="col">
-            <div className="card">
-              <div className="card-body">
-                <h3 className="card-title">Resolved This Week: {this.state.num_resolved_week}</h3>
-              </div>
-            </div>
-          </div>
-        </div>
       </div>
     );
   }
