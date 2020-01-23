@@ -15,12 +15,47 @@ class NewReferral extends React.Component {
       incident_description: null,
       status: null,
       resolution: null,
+      first_name_error: "",
+      last_name_error: "",
+      date_of_incident_error: "",
+      incident_description_error: "",
     };
 
     this.handleChange = this.handleChange.bind(this);
     this.handleSubmit = this.handleSubmit.bind(this);
+    this.validate = this.validate.bind(this);
   }
+  validate() {
+    let first_name_error = "";
+    let last_name_error = "";
+    let date_of_incident_error = "";
+    let incident_description_error = "";
 
+    if (this.state.first_name === ""){
+      first_name_error = "Required";
+    }
+    if (this.state.last_name === "") {
+      last_name_error = "Required";
+    }
+    if (this.state.data_of_incident_error === "") {
+      date_of_incident_error = "Required";
+    }
+    if (this.state.incident_description_error === "") {
+      incident_description_error = "Required";
+    }
+
+    if (first_name_error || last_name_error || date_of_incident_error || incident_description_error) {
+      this.setState({
+        first_name_error,
+        last_name_error,
+        date_of_incident_error,
+        incident_description_error
+      });
+      return false;
+    }
+
+    return true;
+  }
   handleChange(event) {
     this.setState({
       [event.target.name]: event.target.value
@@ -29,25 +64,29 @@ class NewReferral extends React.Component {
   }
 
   handleSubmit(event) {
-    fetch('http://localhost:5000/incidents', {
-      method:'post',
-      body: JSON.stringify(this.state),
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
-      .then(res => res.json())
-      .then(
-        (result) => {
-          console.log('POST data: ' + result);
-          window.location.reload(false);
-        },
-        (error) => {
-          this.setState({
-            //TODO
-          });
+    const isValid = this.validate();
+    if (isValid) {
+      fetch('http://localhost:5000/incidents', {
+        method:'post',
+        body: JSON.stringify(this.state),
+        headers: {
+          'Content-Type': 'application/json'
         }
-      )
+      })
+        .then(res => res.json())
+        .then(
+          (result) => {
+            console.log('POST data: ' + result);
+            window.location.reload(false);
+          },
+          (error) => {
+            this.setState({
+              //TODO
+            });
+          }
+        )
+    }
+
     event.preventDefault();
   }
 
