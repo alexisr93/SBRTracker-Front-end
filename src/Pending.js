@@ -18,7 +18,7 @@ class Pending extends React.Component {
       .then(res => res.json())
       .then(
         (result) => {
-          this.setState({
+          this.setState({ //there may be an issue here for some reason. See console output.
             isLoaded: true,
             items: result
           });
