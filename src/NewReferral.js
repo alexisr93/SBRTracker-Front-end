@@ -4,17 +4,17 @@ class NewReferral extends React.Component {
   constructor(props) {
     super(props);
     this.state = {
-      first_name: null,
-      middle_name: null,
-      last_name: null,
-      grade: null,
-      class_period: null,
-      date_of_incident: null,
-      incident_type: null,
-      previous_intervention: null,
-      incident_description: null,
-      status: null,
-      resolution: null,
+      first_name: "",
+      middle_name: "",
+      last_name: "",
+      grade: "",
+      class_period: "",
+      date_of_incident: "",
+      incident_type: "",
+      previous_intervention: "",
+      incident_description: "",
+      status: "",
+      resolution: "",
       first_name_validate: "form-control",
       last_name_validate: "form-control",
       date_of_incident_validate: "form-control",
@@ -40,15 +40,15 @@ class NewReferral extends React.Component {
       last_name_validate = "form-control is-invalid";
       is_invalid = true;
     }
-    if (this.state.data_of_incident_error === "") {
+    if (this.state.date_of_incident === "") {
       date_of_incident_validate = "form-control is-invalid";
       is_invalid = true;
     }
-    if (this.state.incident_description_error === "") {
+    if (this.state.incident_description === "") {
       incident_description_validate = "form-control is-invalid";
       is_invalid = true;
     }
-
+    console.log("Is invalid is: " + is_invalid)
     if (is_invalid) {
       this.setState({
         first_name_validate,
@@ -76,8 +76,8 @@ class NewReferral extends React.Component {
   }
 
   handleSubmit(event) {
-    const isValid = this.validate();
-    if (isValid) {
+    const is_valid = this.validate();
+    if (is_valid) {
       fetch('http://localhost:5000/incidents', {
         method:'post',
         body: JSON.stringify(this.state),
