@@ -15,10 +15,10 @@ class NewReferral extends React.Component {
       incident_description: null,
       status: null,
       resolution: null,
-      first_name_error: "",
-      last_name_error: "",
-      date_of_incident_error: "",
-      incident_description_error: "",
+      first_name_validate: "form-control",
+      last_name_validate: "form-control",
+      date_of_incident_validate: "form-control",
+      incident_description_validate: "form-control",
     };
 
     this.handleChange = this.handleChange.bind(this);
@@ -26,35 +26,47 @@ class NewReferral extends React.Component {
     this.validate = this.validate.bind(this);
   }
   validate() {
-    let first_name_error = "";
-    let last_name_error = "";
-    let date_of_incident_error = "";
-    let incident_description_error = "";
+    let is_invalid = false;
+    let first_name_validate = "form-control";
+    let last_name_validate = "form-control";
+    let date_of_incident_validate = "form-control";
+    let incident_description_validate = "form-control";
 
     if (this.state.first_name === ""){
-      first_name_error = "Required";
+      first_name_validate = "form-control is-invalid";
+      is_invalid = true;
     }
     if (this.state.last_name === "") {
-      last_name_error = "Required";
+      last_name_validate = "form-control is-invalid";
+      is_invalid = true;
     }
     if (this.state.data_of_incident_error === "") {
-      date_of_incident_error = "Required";
+      date_of_incident_validate = "form-control is-invalid";
+      is_invalid = true;
     }
     if (this.state.incident_description_error === "") {
-      incident_description_error = "Required";
+      incident_description_validate = "form-control is-invalid";
+      is_invalid = true;
     }
 
-    if (first_name_error || last_name_error || date_of_incident_error || incident_description_error) {
+    if (is_invalid) {
       this.setState({
-        first_name_error,
-        last_name_error,
-        date_of_incident_error,
-        incident_description_error
+        first_name_validate,
+        last_name_validate,
+        date_of_incident_validate,
+        incident_description_validate
       });
       return false;
     }
-
-    return true;
+    else {
+      this.setState({
+        first_name_validate,
+        last_name_validate,
+        date_of_incident_validate,
+        incident_description_validate
+      });
+      return true;
+    }
   }
   handleChange(event) {
     this.setState({
@@ -104,31 +116,33 @@ class NewReferral extends React.Component {
                 <label>Student Name</label>
                 <div className="row">
                   <div className="col">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="first_name"
-                    onChange={this.handleChange}
-                    placeholder="First Name"
-                  />
+                    <input
+                      type="text"
+                      className={this.state.first_name_validate}
+                      name="first_name"
+                      onChange={this.handleChange}
+                      placeholder="First Name"
+                    />
+                    <div className="invalid-feedback">First name is required</div>
                   </div>
                   <div className="col">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="middle_name"
-                    onChange={this.handleChange}
-                    placeholder="Middle Name"
-                  />
-                  </div>
+                    <input
+                      type="text"
+                      className="form-control"
+                      name="middle_name"
+                      onChange={this.handleChange}
+                      placeholder="Middle Name"
+                    />
+                    </div>
                   <div className="col">
-                  <input
-                    type="text"
-                    className="form-control"
-                    name="last_name"
-                    onChange={this.handleChange}
-                    placeholder="Last Name"
-                  />
+                    <input
+                      type="text"
+                      className={this.state.last_name_validate}
+                      name="last_name"
+                      onChange={this.handleChange}
+                      placeholder="Last Name"
+                    />
+                    <div className="invalid-feedback">Last name is required</div>
                   </div>
                 </div>
               </div>
@@ -173,10 +187,12 @@ class NewReferral extends React.Component {
                     <label>Date of Incident</label>
                     <input
                       type="text"
-                      className="form-control"
+                      className={this.state.date_of_incident_validate}
                       name="date_of_incident"
                       onChange={this.handleChange}
-                      placeholder="MM/DD/YY"/>
+                      placeholder="MM/DD/YY"
+                    />
+                    <div className="invalid-feedback">Date is required</div>
                   </div>
 
                   <div className="col">
@@ -215,12 +231,13 @@ class NewReferral extends React.Component {
               <div className="form-group">
                 <label>Incident Description</label>
                 <textarea
-                  className="form-control"
+                  className={this.state.incident_description_validate}
                   name="incident_description"
                   onChange={this.handleChange}
                   rows="3"
                   placeholder="Enter description.">
                 </textarea>
+                <div className="invalid-feedback">A description is required</div>
               </div>
 
               <div className="row">
