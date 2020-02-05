@@ -91,7 +91,7 @@ class Resolved extends React.Component {
                 <th>Previous Intervention</th>
                 <th>Description</th>
                 <th>Resolution</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>

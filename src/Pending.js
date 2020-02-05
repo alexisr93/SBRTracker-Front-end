@@ -106,7 +106,7 @@ class Pending extends React.Component {
                 <th>Type</th>
                 <th>Previous Intervention</th>
                 <th>Description</th>
-                <th></th>
+                <th>Actions</th>
               </tr>
             </thead>
             <tbody>
