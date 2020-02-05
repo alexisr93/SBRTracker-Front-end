@@ -46,25 +46,28 @@ class Resolved extends React.Component {
             <td>{item.incident_type}</td>
             <td>{item.previous_intervention}</td>
             <td>{item.incident_description}</td>
-            <button
-              type="submit"
-              className="btn btn-dark"
-              name={item.id}
-              onClick={this.handleClick}>
-              Delete
-            </button>
-            <Link
-              to={{
-                pathname: "/update",
-                param1: item.id
-              }}>
+            <td>{item.resolution}</td>
+            <td>
+              <button
+                type="submit"
+                className="btn btn-dark"
+                name={item.id}
+                onClick={this.handleClick}>
+                Delete
+              </button>
+              <Link
+                to={{
+                  pathname: "/update",
+                  param1: item.id
+                }}
+              >
                 <button
                   type="button"
                   className="btn btn-secondary">
                   Update
                 </button>
-            </Link>
-
+              </Link>
+            </td>
           </tr>
         )
       }
@@ -87,6 +90,7 @@ class Resolved extends React.Component {
                 <th>Type</th>
                 <th>Previous Intervention</th>
                 <th>Description</th>
+                <th>Resolution</th>
                 <th></th>
               </tr>
             </thead>
