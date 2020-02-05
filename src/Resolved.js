@@ -1,4 +1,7 @@
 import React from 'react';
+import {
+  Link
+} from 'react-router-dom';
 
 class Resolved extends React.Component {
   constructor(props) {
@@ -43,6 +46,25 @@ class Resolved extends React.Component {
             <td>{item.incident_type}</td>
             <td>{item.previous_intervention}</td>
             <td>{item.incident_description}</td>
+            <button
+              type="submit"
+              className="btn btn-dark"
+              name={item.id}
+              onClick={this.handleClick}>
+              Delete
+            </button>
+            <Link
+              to={{
+                pathname: "/update",
+                param1: item.id
+              }}>
+                <button
+                  type="button"
+                  className="btn btn-secondary">
+                  Update
+                </button>
+            </Link>
+
           </tr>
         )
       }
@@ -65,6 +87,7 @@ class Resolved extends React.Component {
                 <th>Type</th>
                 <th>Previous Intervention</th>
                 <th>Description</th>
+                <th></th>
               </tr>
             </thead>
             <tbody>
