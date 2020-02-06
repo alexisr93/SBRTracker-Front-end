@@ -10,6 +10,7 @@ class Resolved extends React.Component {
         isLoaded: false,
         items: []
     };
+    this.handleClick = this.handleClick.bind(this);
   }
 
   componentDidMount() {
@@ -27,6 +28,21 @@ class Resolved extends React.Component {
             isLoaded: true
             //TODO
           });
+        }
+      )
+  }
+
+  handleClick(event){
+    fetch("http://localhost:5000/incidents/" + event.target.name, {
+      method: "delete",
+    })
+      .then(res => res.json())
+      .then(
+        (result) => {
+          this.setState({
+            isLoaded: true,
+          });
+        window.location.reload(false);
         }
       )
   }
